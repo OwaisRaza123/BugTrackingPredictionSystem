@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mt-3">
+My Assigned Bugs
+</h2>
+
+<hr>
+
+<table class="table table-bordered table-striped">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>ID</th>
+<th>Bug Title</th>
+<th>Priority</th>
+<th>Severity</th>
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for bug in bugs %}
+
+<tr>
+
+<td>{{ bug.id }}</td>
+
+<td>{{ bug.bug_title }}</td>
+
+<td>{{ bug.priority }}</td>
+
+<td>{{ bug.severity }}</td>
+
+<td>{{ bug.status }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock %}

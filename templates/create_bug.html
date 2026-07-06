@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+<div class="col-md-6">
+
+<div class="card">
+
+<div class="card-header">
+<h3>Create Bug</h3>
+</div>
+
+<div class="card-body">
+
+<form method="POST">
+
+<div class="mb-3">
+<label>Bug Title</label>
+<input type="text"
+name="bug_title"
+class="form-control"
+required>
+</div>
+
+<div class="mb-3">
+<label>Description</label>
+<textarea
+name="description"
+class="form-control">
+</textarea>
+</div>
+
+<div class="mb-3">
+<label>Priority</label>
+
+<select
+name="priority"
+class="form-control">
+
+<option>Low</option>
+<option>Medium</option>
+<option>High</option>
+
+</select>
+
+</div>
+
+<div class="alert alert-info">
+
+<b>Machine Learning Prediction</b>
+
+<br><br>
+
+Severity and Estimated Resolution Time
+will be predicted automatically after you
+submit this bug.
+
+</div>
+
+<div class="mb-3">
+
+<label>Assign To</label>
+
+<select
+name="assigned_to"
+class="form-control">
+
+{% for developer in developers %}
+
+<option value="{{ developer.id }}">
+    {{ developer.name }}
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+<div class="mb-3">
+<label>Status</label>
+<select
+name="status"
+class="form-control">
+
+<option>Open</option>
+<option>In Progress</option>
+<option>Closed</option>
+</select>
+</div>
+
+<button class="btn btn-primary w-100">
+Report Bug
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

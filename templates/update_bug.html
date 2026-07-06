@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">
+    Update Bug Status
+</h2>
+
+<div class="card shadow">
+
+    <div class="card-body">
+
+        <form method="POST">
+
+            <div class="mb-3">
+                <label class="form-label">
+                    Bug Title
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    value="{{ bug.bug_title }}"
+                    readonly>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">
+                    Current Status
+                </label>
+
+                <select
+                    name="status"
+                    class="form-select">
+
+                    <option value="Open"
+                    {% if bug.status=="Open" %}selected{% endif %}>
+                        Open
+                    </option>
+
+                    <option value="In Progress"
+                    {% if bug.status=="In Progress" %}selected{% endif %}>
+                        In Progress
+                    </option>
+
+                    <option value="Resolved"
+                    {% if bug.status=="Resolved" %}selected{% endif %}>
+                        Resolved
+                    </option>
+
+                    <option value="Closed"
+                    {% if bug.status=="Closed" %}selected{% endif %}>
+                        Closed
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button
+                type="submit"
+                class="btn btn-primary">
+
+                Update Status
+
+            </button>
+
+            <a
+                href="/bugs"
+                class="btn btn-secondary">
+
+                Cancel
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Page Title -->
+    <title>Bug Tracking and Prediction System</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- ========================= NAVBAR START ========================= -->
+
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container d-flex justify-content-between">
+
+            <!-- Website Logo -->
+            <a class="navbar-brand" href="/">
+                Bug Tracking and Prediction System
+            </a>
+
+            <!-- Navigation Menu -->
+            <div>
+
+                <!-- Home Button -->
+                <a href="/" class="btn btn-outline-light btn-sm">
+                    Home
+                </a>
+
+                <!-- Check User Login -->
+                {% if session.get('user_id') %}
+
+                    <!-- Dashboard -->
+                    <a href="/dashboard" class="btn btn-outline-light btn-sm">
+                        Dashboard
+                    </a>
+
+                    <!-- ================= ADMIN MENU ================= -->
+                    {% if session['user_role'] in ["Admin", "Project Manager"] %}
+
+                        <!-- Project Management -->
+                        <div class="btn-group">
+
+                            <a href="/create_project" class="btn btn-outline-warning btn-sm">
+                                Create Project
+                            </a>
+
+                            <a href="/projects" class="btn btn-warning btn-sm">
+                                Projects
+                            </a>
+
+                        </div>
+                        
+                        <!-- Users -->
+                         <div class="btn-group">
+
+                           <a href="/users"
+                           class="btn btn-outline-primary btn-sm">
+                                Users
+                            </a>
+
+</div>
+
+
+                        <!-- Bug Management -->
+                        <div class="btn-group">
+
+                            <a href="/create_bug" class="btn btn-outline-info btn-sm">
+                                Create Bug
+                            </a>
+
+                            <a href="/bugs" class="btn btn-info btn-sm">
+                                Bugs
+                            </a>
+
+                            <a href="/bug_history" class="btn btn-outline-secondary btn-sm">
+                                History
+                            </a>
+
+                        </div>
+
+                    {% endif %}
+
+                    <!-- ================= DEVELOPER MENU ================= -->
+                    {% if session['user_role'] == "Developer" %}
+
+                        
+
+                    {% endif %}
+
+                    <!-- ================= TESTER MENU ================= -->
+                    {% if session['user_role'] == "Tester" %}
+
+                        
+
+                        <a href="/create_bug" class="btn btn-info btn-sm">
+                           Report Bug
+                        </a>
+                        
+                        <a href="/reported_bugs"
+                           class="btn btn-success btn-sm">
+
+                             My Reported Bugs
+
+                        </a>
+
+                    {% endif %}
+
+                    <!-- Logged In User -->
+                    <span class="text-white ms-3 me-3">
+                        👤 {{ session['user_name'] }}
+                    </span>
+
+                    <!-- Logout -->
+                    <a href="/logout" class="btn btn-danger btn-sm">
+                        Logout
+                    </a>
+
+                {% else %}
+
+                    <!-- Login -->
+                    <a href="/login" class="btn btn-outline-light btn-sm">
+                        Login
+                    </a>
+
+                    <!-- Register -->
+                    <a href="/register" class="btn btn-primary btn-sm">
+                        Register
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- ========================= NAVBAR END ========================= -->
+
+
+    <!-- ========================= PAGE CONTENT ========================= -->
+
+    <main class="container mt-4">
+
+    {% block content %}
+
+    {% endblock %}
+
+    </main>
+
+    <!-- ========================= PAGE CONTENT END ========================= -->
+
+
+    <!-- Footer -->
+
+<footer class="bg-dark text-white mt-5">
+
+    <div class="container py-4">
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <h5>Bug Tracking and Prediction System</h5>
+
+                <p class="mb-0">
+                    Machine Learning based Bug Severity and Resolution Time Prediction.
+                </p>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <h6>Quick Links</h6>
+
+                <ul class="list-unstyled">
+
+                    <li><a href="/" class="text-white text-decoration-none">Home</a></li>
+
+                    <li><a href="/dashboard" class="text-white text-decoration-none">Dashboard</a></li>
+
+                    <li><a href="/bugs" class="text-white text-decoration-none">Bug List</a></li>
+
+                </ul>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <h6>Project Info</h6>
+
+                <p class="mb-1">Version : 1.0</p>
+
+                <p class="mb-0">M.Sc. IT Final Year Project</p>
+
+            </div>
+
+        </div>
+
+        <hr class="border-secondary">
+
+        <div class="text-center">
+
+            © 2026 Bug Tracking and Prediction System |
+            Developed by <strong>Shaikh Owais</strong>
+
+        </div>
+
+    </div>
+
+</footer>
+    
+
+</body>
+
+</html>

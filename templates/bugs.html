@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mt-3">
+    Bug List
+</h2>
+
+<hr>
+
+<div class="table-responsive">
+
+<table class="table table-bordered table-striped table-hover">
+
+    <thead class="table-dark">
+
+        <tr>
+
+            <th>ID</th>
+
+            <th>Bug Title</th>
+
+            <th>Description</th>
+
+            <th>Priority</th>
+
+            <th>Predicted Severity</th>
+
+            <th>Estimated Resolution</th>
+
+            <th>Status</th>
+
+            <th>Assigned To</th>
+
+            <th>Action</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+    {% for bug in bugs %}
+
+        <tr>
+
+            <td>{{ bug.id }}</td>
+
+            <td>{{ bug.bug_title }}</td>
+
+            <td>{{ bug.description }}</td>
+
+            <td>
+
+                <span class="badge bg-warning text-dark">
+
+                    {{ bug.priority }}
+
+                </span>
+
+            </td>
+
+            <td>
+
+                {% if bug.severity=="Critical" %}
+
+                    <span class="badge bg-danger">
+                        Critical
+                    </span>
+
+                {% elif bug.severity=="High" %}
+
+                    <span class="badge bg-danger">
+                        High
+                    </span>
+
+                {% elif bug.severity=="Medium" %}
+
+                    <span class="badge bg-warning text-dark">
+                        Medium
+                    </span>
+
+                {% else %}
+
+                    <span class="badge bg-success">
+                        Low
+                    </span>
+
+                {% endif %}
+
+            </td>
+
+            <td>
+
+                <span class="badge bg-info text-dark">
+
+                    {{ bug.predicted_resolution }}
+
+                </span>
+
+            </td>
+
+            <td>
+
+                {% if bug.status=="Open" %}
+
+                    <span class="badge bg-primary">
+                        Open
+                    </span>
+
+                {% elif bug.status=="In Progress" %}
+
+                    <span class="badge bg-warning text-dark">
+                        In Progress
+                    </span>
+
+                {% elif bug.status=="Resolved" %}
+
+                    <span class="badge bg-success">
+                        Resolved
+                    </span>
+
+                {% elif bug.status=="Verified" %}
+
+                    <span class="badge bg-info">
+                        Verified
+                    </span>
+
+                {% elif bug.status=="Closed" %}
+
+                    <span class="badge bg-secondary">
+                        Closed
+                    </span>
+
+                {% elif bug.status=="Reopened" %}
+
+                    <span class="badge bg-danger">
+                        Reopened
+                    </span>
+
+                {% endif %}
+
+            </td>
+
+            <td>
+
+                {% if bug.developer %}
+
+                    {{ bug.developer.name }}
+
+                {% else %}
+
+                    Not Assigned
+
+                {% endif %}
+
+            </td>
+
+            <td>
+
+                <a href="/update_bug/{{ bug.id }}"
+                   class="btn btn-warning btn-sm">
+
+                    Update
+
+                </a>
+
+            </td>
+
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+</div>
+
+{% endblock %}

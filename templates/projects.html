@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mt-3">
+    Project List
+</h2>
+
+<hr>
+
+<table class="table table-bordered table-striped">
+
+    <thead class="table-dark">
+
+        <tr>
+            <th>ID</th>
+            <th>Project Name</th>
+            <th>Description</th>
+            <th>Status</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for project in projects %}
+
+        <tr>
+
+            <td>
+                {{ project.id }}
+            </td>
+
+            <td>
+                {{ project.project_name }}
+            </td>
+
+            <td>
+                {{ project.description }}
+            </td>
+
+            <td>
+                {{ project.status }}
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

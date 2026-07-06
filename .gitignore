@@ -1,0 +1,10 @@
+venv/
+__pycache__/
+*.pyc
+
+
+
+# Large datasets
+dataset/severity_processed.csv
+dataset/resolution_processed.csv
+dataset/resolution_labeled.csv
